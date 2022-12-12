@@ -1,0 +1,157 @@
+{
+    "file": "blob:http://localhost:3000/007129ad-86eb-446e-b457-bac68d17c2a9",
+    "ArrayField": [
+        {
+            "bounding": {
+                "id": "WON3uNdmV",
+                "x": 1078,
+                "y": 1505,
+                "height": 1127,
+                "width": 1208
+            },
+            "inputType": "Text",
+            "fieldName": "input",
+            "required": true,
+            "details": {
+                "textFieldType": "Input",
+                "details": {
+                    "default": "default1",
+                    "prefixPosition": {
+                        "start": "ab"
+                    }
+                }
+            },
+            "showAttribute": true,
+            "bold": true,
+            "underline": true
+        },
+        {
+            "bounding": {
+                "id": "3gAfNrNJ3",
+                "x": 1353,
+                "y": 3001,
+                "height": 569,
+                "width": 1533
+            },
+            "inputType": "Text",
+            "fieldName": "number",
+            "required": true,
+            "details": {
+                "textFieldType": "Number",
+                "details": {
+                    "default": "23"
+                }
+            },
+            "showAttribute": true,
+            "bold": true,
+            "underline": true
+        },
+        {
+            "bounding": {
+                "id": "HqgDfUf_q",
+                "x": 1583,
+                "y": 1812,
+                "height": 834,
+                "width": 1915
+            },
+            "inputType": "Select",
+            "fieldName": "selectM",
+            "required": true,
+            "details": {
+                "multipleSelect": true,
+                "selections": [
+                    "a",
+                    "b",
+                    "c"
+                ]
+            }
+        },
+        {
+            "bounding": {
+                "id": "cznpncvph",
+                "x": 1028,
+                "y": 3931,
+                "height": 627,
+                "width": 2044
+            },
+            "inputType": "Text",
+            "fieldName": "textaera",
+            "required": true,
+            "details": {
+                "textFieldType": "Textarea",
+                "details": {
+                    "default": "23"
+                }
+            }
+        },
+        {
+            "bounding": {
+                "id": "ZnKuxY6az",
+                "x": 1051,
+                "y": 4895,
+                "height": 848,
+                "width": 1963
+            },
+            "inputType": "Text",
+            "fieldName": "date",
+            "required": true,
+            "details": {
+                "textFieldType": "Date",
+                "details": {
+                    "timeType": "time",
+                    "format": "HH:mm",
+                    "presetCurrent": true
+                }
+            },
+            "showAttribute": true,
+            "bold": true,
+            "underline": true
+        },
+        {
+            "bounding": {
+                "id": "he2H3irtp",
+                "x": 1365,
+                "y": 6092,
+                "height": 731,
+                "width": 2277
+            },
+            "inputType": "Text",
+            "fieldName": "email",
+            "required": true,
+            "details": {
+                "textFieldType": "e-mail",
+                "details": {
+                    "default": "email"
+                }
+            },
+            "showAttribute": true,
+            "bold": true,
+            "underline": true
+        },
+        {
+            "bounding": {
+                "id": "JxpkqCxyV",
+                "x": 3805,
+                "y": 4128,
+                "height": 627,
+                "width": 1417
+            },
+            "inputType": "Select",
+            "fieldName": "select",
+            "required": true,
+            "showAttribute": true,
+            "bold": true,
+            "underline": true,
+            "details": {
+                "selections": [
+                    "a",
+                    "b",
+                    "c"
+                ],
+                "details": {
+                    "default": "b"
+                }
+            }
+        }
+    ]
+}
