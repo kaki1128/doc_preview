@@ -12,7 +12,7 @@ import _ from "lodash";
 
 const Preview = () => {
 
-    // let defaultAtrributes = [];
+    // let defaultAtrributes = []; change something
     // let defaultFieldValues = [];
 
     // let test = [];
