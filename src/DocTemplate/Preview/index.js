@@ -9,10 +9,11 @@ import jsPDF from "jspdf";
 import file from "./Elements/WaiMing_Blank.jpg";
 import dayjs from "dayjs";
 import _ from "lodash";
+import Nav from "../../Nav";
 
 const Preview = () => {
 
-    // let defaultAtrributes = []; change something
+    // let defaultAtrributes = [];
     // let defaultFieldValues = [];
 
     // let test = [];
@@ -35,7 +36,13 @@ const Preview = () => {
     //     test.push(item)
     // })
 
-    const form = useForm({ mode: 'onChange' });
+    const form = useForm({
+        mode: 'onChange',
+        defaultValues: {
+            "89hsmXBYa": "21",
+            // "date": dayjs().format("HH:mm")
+        }
+    });
     const {
         register,
         handleSubmit,
@@ -49,17 +56,6 @@ const Preview = () => {
         clearErrors,
         formState: { errors, isValid }
     } = form
-
-    // useForm({
-    //     defaultValues: {
-    //         //     // input: "default1",
-    //         //     // number: "23",
-
-    //         // date: dayjs().format("HH:mm")
-    //         //     output
-    //     }
-    // });
-
 
     const onSubmit = (data) => {
         console.log("data", data)
@@ -89,7 +85,7 @@ const Preview = () => {
     //Ratio
     const ratioPreview = actualWidth / renderPreviewWidth
     //Text size
-    const [fontSize, setFontSize] = useState(130)
+    const [fontSize, setFontSize] = useState(120)
 
     //Doc Dialog
     const [open, setOpen] = useState(false);
@@ -131,126 +127,123 @@ const Preview = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            {console.log(isValid,"testvalid")}
-            <Grid container direction="row" spacing={2}>
-                <Grid item xs={6}>
-                    <Card className={'card-box'}>
-                        <div className="card-header">
-                            <div className="card-header--title">
-                                <b className="font-size-md text-primary">Input Section</b>
-                            </div>
-                        </div>
-                        <CardContent className="h-100 d-flex flex-column">
-                            <Grid container spacing={1}>
-                                {setting.ArrayField.map((field, index) => (
-                                    <Grid item xs={12}>
-                                        <Form
-                                            field={field}
-                                            form={form}
+        <>
+            <Nav buttonVariant={false} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {/* {console.log(isValid, "testvalid")} */}
+                <Grid container direction="row" spacing={2}>
+                    <Grid item xs={6}>
+                        <Card className={'card-box'}>
+                            <CardContent className="h-100 d-flex flex-column">
+                                <b>Input Section</b><br /><br />
+                                <Grid container spacing={1}>
+                                    {setting.ArrayField.map((field, index) => (
+                                        <Grid item xs={12}>
+                                            <Form
+                                                field={field}
+                                                form={form}
+                                            />
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                                {/* <Button style={{ marginTop: "1rem" }} type="submit">Confirm</Button> */}
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Card className={'card-box'}>
+                            <CardContent className="h-100 d-flex flex-column">
+                                <b>Preview Section</b><br /><br />
+                                <TextField label="font size" size="small" type="number"
+                                    value={fontSize}
+                                    onChange={(event) => {
+                                        setFontSize(event.target.value)
+                                    }}
+                                    InputProps={{
+                                        endAdornment: <InputAdornment position="end">pt</InputAdornment>
+                                    }}
+                                /><br /><br />
+                                <div style={{ border: "0.5px solid gray" }}>
+                                    <div ref={imgPreviewRef} style={{
+                                        position: "relative",
+                                        width: "100%",
+                                        height: renderPreviewWidth / 210 * 297
+                                    }}>
+                                        {/* {console.log(renderPreviewWidth, "testwidth")} */}
+                                        <img
+                                            src={file}
+                                            height="100%"
+                                            onLoad={event => { setActualWidth(event.target.naturalWidth) }}
                                         />
-                                    </Grid>
-                                ))}
-                            </Grid>
-                            {/* <Button style={{ marginTop: "1rem" }} type="submit">Confirm</Button> */}
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid item xs={6}>
-                    <Card className={'card-box'}>
-                        <div className="card-header">
-                            <div className="card-header--title">
-                                <b className="font-size-md text-primary">Preview Section</b>
-                            </div>
-                            <br />
-                            <TextField label="font size" size="small" type="number"
-                                value={fontSize}
-                                onChange={(event) => {
-                                    setFontSize(event.target.value)
-                                }}
-                                InputProps={{
-                                    endAdornment: <InputAdornment position="end">pt</InputAdornment>
-                                }}
-                            />
-                        </div>
-                        <CardContent className="h-100 d-flex flex-column">
-                            <div style={{ border: "0.5px solid gray" }}>
-                                <div ref={imgPreviewRef} style={{
-                                    position: "relative",
-                                    width: "100%",
-                                    height: renderPreviewWidth / 210 * 297
-                                }}>
-                                    <img
-                                        src={file}
-                                        height="100%"
-                                        onLoad={event => { setActualWidth(event.target.naturalWidth) }}
-                                    />
-                                    <DocPreview
-                                        getValues={getValues}
-                                        fontSize={parseInt(fontSize) / ratioPreview}
-                                        fields={setting.ArrayField}
-                                        ratio={ratioPreview}
-                                    />
-                                </div>
-                            </div>
-                            <br /> <br />
-
-                            <Button
-                                // type="submit"
-                                onClick={handleClickOpen}
-                            >
-                                Generate PDF
-                            </Button>
-                            <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                scroll='paper'
-                                sx={{
-                                    "& .MuiDialog-container": {
-                                        "& .MuiPaper-root": {
-                                            width: "100%",
-                                            maxWidth: "670px"
-                                        },
-                                    },
-                                }}
-                            >
-                                <DialogTitle>Document Preview</DialogTitle>
-                                <DialogContent dividers='paper'>
-                                    <div style={{ border: "0.5px solid gray", height: renderDialogWidth / 210 * 300 }}>
-                                        <div
-                                            ref={imgDialogRef}
-                                            style={{
-                                                position: "relative",
-                                                width: renderDialogWidth,
-                                                height: renderDialogWidth / 210 * 297
-                                            }}>
-                                            <img
-                                                src={file}
-                                                width="100%"
-                                            />
-                                            <DocPreview
-                                                getValues={getValues}
-                                                fontSize={parseInt(fontSize) / ratioDialog}
-                                                fields={setting.ArrayField}
-                                                ratio={ratioDialog}
-                                            />
-                                        </div>
+                                        <DocPreview
+                                            getValues={getValues}
+                                            fontSize={parseInt(fontSize) / ratioPreview}
+                                            fields={setting.ArrayField}
+                                            ratio={ratioPreview}
+                                        />
                                     </div>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleGeneratePdf}>
-                                        Confirm
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </CardContent>
-                    </Card>
+                                </div>
+                                <br /> <br />
 
-                    <pre>{JSON.stringify(watch(), null, 2)}</pre>
+                                <Button
+                                    // type="submit"
+                                    variant="contained"
+                                    onClick={handleClickOpen}
+                                    size="small"
+                                >
+                                    Generate PDF
+                                </Button>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    scroll='paper'
+                                    sx={{
+                                        "& .MuiDialog-container": {
+                                            "& .MuiPaper-root": {
+                                                width: "100%",
+                                                maxWidth: "670px"
+                                            },
+                                        },
+                                    }}
+                                >
+                                    <DialogTitle>Document Preview</DialogTitle>
+                                    <DialogContent dividers='paper'>
+                                        <div style={{ border: "0.5px solid gray", height: renderDialogWidth / 210 * 300 }}>
+                                            <div
+                                                ref={imgDialogRef}
+                                                style={{
+                                                    position: "relative",
+                                                    width: renderDialogWidth,
+                                                    height: renderDialogWidth / 210 * 297
+                                                }}>
+                                                <img
+                                                    src={file}
+                                                    width="100%"
+                                                />
+                                                <DocPreview
+                                                    getValues={getValues}
+                                                    fontSize={parseInt(fontSize) / ratioDialog}
+                                                    fields={setting.ArrayField}
+                                                    ratio={ratioDialog}
+                                                />
+                                            </div>
+                                        </div>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleGeneratePdf} variant="contained" style={{ margin: "5px" }}>
+                                            Confirm
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </CardContent>
+                        </Card>
 
+                        <pre>{JSON.stringify(watch(), null, 2)}</pre>
+
+                    </Grid>
                 </Grid>
-            </Grid>
-        </form>
+            </form>
+        </>
     )
 }
 

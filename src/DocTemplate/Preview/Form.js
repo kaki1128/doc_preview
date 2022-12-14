@@ -26,14 +26,14 @@ export const Form = ({ field, form }) => {
     //     filling =
     //         <CheckPart field={field} control={control} />
     // }
-    else if (fieldType === "Closing") {
-        filling =
-            <> Closing </>
-    }
-    else if (fieldType === "Footer") {
-        filling =
-            <> Footer </>
-    }
+    // else if (fieldType === "Closing") {
+    //     filling =
+    //         <> Closing </>
+    // }
+    // else if (fieldType === "Footer") {
+    //     filling =
+    //         <> Footer </>
+    // }
 
     return (
         <>

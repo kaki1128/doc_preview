@@ -19,7 +19,7 @@ export default ({ index, form }) => {
         if (selected === "Date") {
             form.setValue(`ArrayField.${index}.details.details`, {
                 "timeType": "date",
-                "format": "DD/MM/YYYY"
+                "format": "D MMMM, YYYY"
             })
         }
     }, [selected])
@@ -29,30 +29,30 @@ export default ({ index, form }) => {
     if (selected === "Input") {
         fillingTypes =
             <>
-                {/* <Grid item xs={12}>
+                <Grid item xs={12}>
                     <TextInputField
                         form={form}
                         label="Default Value (Optional)"
                         name={`ArrayField.${index}.details.details.default`}
                     />
-                </Grid> */}
+                </Grid>
                 {/* <Grid item xs={12}>
                     <Prefix index={index} form={form} />
                 </Grid> */}
             </>
 
     }
-    // else if (selected === "Number") {
-    //     fillingTypes =
-    //         <Grid item xs={12}>
-    //             <TextInputField
-    //                 form={form}
-    //                 label="Default Value (Optional)"
-    //                 name={`ArrayField.${index}.details.details.default`}
-    //                 type="number"
-    //             />
-    //         </Grid>
-    // }
+    else if (selected === "Number") {
+        fillingTypes =
+            <Grid item xs={12}>
+                <TextInputField
+                    form={form}
+                    label="Default Value (Optional)"
+                    name={`ArrayField.${index}.details.details.default`}
+                    type="number"
+                />
+            </Grid>
+    }
     else if (selected === "Date") {
         fillingTypes =
             <>
@@ -62,17 +62,17 @@ export default ({ index, form }) => {
                 />
             </>
     }
-    // else if (selected === "e-mail") {
-    //     fillingTypes =
-    //         <Grid item xs={12}>
-    //             <TextInputField
-    //                 form={form}
-    //                 label="Default Value (Optional)"
-    //                 name={`ArrayField.${index}.details.details.default`}
-    //                 type="email"
-    //             />
-    //         </Grid>
-    // }
+    else if (selected === "e-mail") {
+        fillingTypes =
+            <Grid item xs={12}>
+                <TextInputField
+                    form={form}
+                    label="Default Value (Optional)"
+                    name={`ArrayField.${index}.details.details.default`}
+                    type="email"
+                />
+            </Grid>
+    }
 
     return (
         <>

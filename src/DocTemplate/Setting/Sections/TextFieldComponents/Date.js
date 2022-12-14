@@ -63,14 +63,14 @@ export default ({ index, form }) => {
                 }
             </Grid>
 
-            {/* <Grid item xs={12}>
-                <CheckController
+            <Grid item xs={12}>
+                {/* <CheckController
                     control={form.control}
                     name={`ArrayField.${index}.details.details.default`}
-                /> Pre-set current?
-                <Checkbox
+                /> Pre-set current? */}
+                {/* <Checkbox
                     checked={checked}
-                    onChange={(event)=>{
+                    onChange={(event) => {
                         setChecked(event.target.checked)
                         if (checked) {
                             form.setValue(`ArrayField.${index}.details.details.default`, "dayjs().format()")
@@ -78,8 +78,8 @@ export default ({ index, form }) => {
                             form.unregister(`ArrayField.${index}.details.details.default`);
                         }
                     }}
-                /> Pre-set current?
-            </Grid> */}
+                /> Pre-set current? */}
+            </Grid>
         </>
     )
 } 
