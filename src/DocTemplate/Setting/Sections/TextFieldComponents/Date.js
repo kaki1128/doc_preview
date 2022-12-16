@@ -2,7 +2,7 @@ import { Checkbox, Grid, Radio } from "@mui/material";
 import dayjs from "dayjs";
 import React, { useState } from "react";
 import SelectInputField from "../../../rhf/SelectInputField";
-import { CheckController, SelectionController, SwitchController } from "../../Elements/Controllers";
+import { CheckController, CheckWithValueController, SelectionController, SwitchController } from "../../Elements/Controllers";
 import { dateFieldTypes, timeFieldTypes } from "../../Elements/DataLists";
 
 export default ({ index, form }) => {
@@ -22,8 +22,6 @@ export default ({ index, form }) => {
             })
         }
     };
-
-    const [checked, setChecked] = useState(false);
 
     return (
         <>
@@ -61,24 +59,6 @@ export default ({ index, form }) => {
                         selectFirst={true}
                     />
                 }
-            </Grid>
-
-            <Grid item xs={12}>
-                {/* <CheckController
-                    control={form.control}
-                    name={`ArrayField.${index}.details.details.default`}
-                /> Pre-set current? */}
-                {/* <Checkbox
-                    checked={checked}
-                    onChange={(event) => {
-                        setChecked(event.target.checked)
-                        if (checked) {
-                            form.setValue(`ArrayField.${index}.details.details.default`, "dayjs().format()")
-                        } else {
-                            form.unregister(`ArrayField.${index}.details.details.default`);
-                        }
-                    }}
-                /> Pre-set current? */}
             </Grid>
         </>
     )

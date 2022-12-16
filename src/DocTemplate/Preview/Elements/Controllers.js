@@ -161,7 +161,7 @@ export const InputController = (props) => {
 
 export const DatePickerController = (props) => {
 
-    const { form, name, label, required, format, presetCurrent,
+    const { form, name, label, required, format, presetCurrent, defaultValue,
         fullWidth = "true",
         showErrorMsg = "true"
     } = props;

@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import React from "react";
 import { DatePickerController, TimeInputController } from "../../Elements/Controllers";
 
@@ -21,14 +22,14 @@ export default ({ field, label, name, required, form }) => {
     }
     else if (type === "time") {
         filling =
-                <TimeInputController
-                    name={name}
-                    label={label}
-                    format={format}
-                    required={required}
-                    form={form}
-                    presetCurrent={presetCurrent}
-                />
+            <TimeInputController
+                name={name}
+                label={label}
+                format={format}
+                required={required}
+                form={form}
+                presetCurrent={presetCurrent}
+            />
     }
 
     return (

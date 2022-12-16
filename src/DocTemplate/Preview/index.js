@@ -13,36 +13,28 @@ import Nav from "../../Nav";
 
 const Preview = () => {
 
-    // let defaultAtrributes = [];
-    // let defaultFieldValues = [];
+    //Set default values
+    let defaultAtrributes = [];
+    let defaultFieldValues = [];
 
-    // let test = [];
+    setting.ArrayField.forEach((element) => {
+        if (element.details?.details?.default) {
+            defaultAtrributes.push(element.bounding.id)
+            defaultFieldValues.push(element.details.details.default)
+        }
+    });
 
-    // setting.ArrayField.forEach((element) => {
-    //     defaultAtrributes.push(element.fieldName)
-    //     defaultFieldValues.push(element.details.details.default)
-    //     // arrayDefault => {...arrayDefault,  element.fieldName, element.details.details.default}
-    // });
-
-    // const output = defaultAtrributes.map((currentValue, index) => ({
-
-    //     [currentValue]: defaultFieldValues[index]
-
-    //     // 'country': countryList[index],
-    //     // 'value': currentValue
-    // }));
-
-    // output.forEach((item) => {
-    //     test.push(item)
-    // })
+    const output = defaultAtrributes.map((currentValue, index) => (
+        [currentValue, defaultFieldValues[index]]
+    ));
 
     const form = useForm({
         mode: 'onChange',
-        defaultValues: {
-            "89hsmXBYa": "21",
-            // "date": dayjs().format("HH:mm")
-        }
+        defaultValues:
+            _.fromPairs(output)
+        // { date: dayjs().format('D MMMM, YYYY') }
     });
+
     const {
         register,
         handleSubmit,
@@ -130,7 +122,6 @@ const Preview = () => {
         <>
             <Nav buttonVariant={false} />
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* {console.log(isValid, "testvalid")} */}
                 <Grid container direction="row" spacing={2}>
                     <Grid item xs={6}>
                         <Card className={'card-box'}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox, MenuItem, Select, Switch, TextField } from "@mui/material";
 import { Controller } from "react-hook-form";
 import clsx from "clsx";
@@ -95,6 +95,38 @@ export const CheckController = ({ control, name, unregister, unregisterName, def
                     onChange={(e) => {
                         field.onChange(e.target.checked)
                         unregister(unregisterName)
+                    }}
+                />
+            )}
+            name={name}
+            control={control}
+            defaultValue={defaultValue} />
+    )
+}
+
+export const CheckWithValueController = ({ control, name, value, defaultValue }) => {
+
+    const [selectedValue, setSelectedValue] = useState("");
+    const handleOnChange = (event, field) => {
+        if (event.target.value === selectedValue) {
+            setSelectedValue("");
+            field.onChange("")
+        } else {
+            setSelectedValue(value)
+            field.onChange(event.target.value)
+        }
+    }
+
+    return (
+        <Controller
+            render={({ field }) => (
+                <Checkbox
+                    size="small"
+                    {...field}
+                    checked={selectedValue === value}
+                    value={value}
+                    onChange={(event) => {
+                        handleOnChange(event, field)
                     }}
                 />
             )}

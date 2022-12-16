@@ -5,7 +5,7 @@
             "bounding": {
                 "id": "ZnstRE5xn",
                 "x": 1629,
-                "y": 1718,
+                "y": 1918,
                 "height": 507,
                 "width": 1746
             },
@@ -20,18 +20,21 @@
         },
         {
             "bounding": {
-                "id": "89hsmXBYa",
-                "x": 1711,
-                "y": 2663,
-                "height": 824,
-                "width": 1955
+                "id": "GWF-TEnQA",
+                "x": 3141,
+                "y": 5960,
+                "height": 1127,
+                "width": 2254
             },
-            "inputType": "Text",
-            "fieldName": "b",
+            "inputType": "Select",
+            "fieldName": "a",
             "details": {
-                "textFieldType": "Number",
+                "selections": [
+                    "d",
+                    "f"
+                ],
                 "details": {
-                    "default": "21"
+                    "default": "d"
                 }
             }
         },
@@ -46,10 +49,7 @@
             "inputType": "Text",
             "fieldName": "c",
             "details": {
-                "textFieldType": "e-mail",
-                "details": {
-                    "default": "sdf@gmail.com"
-                }
+                "textFieldType": "e-mail"
             }
         }
     ]

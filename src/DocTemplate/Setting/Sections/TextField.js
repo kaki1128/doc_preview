@@ -6,6 +6,7 @@ import { InputController, SelectionController } from "../Elements/Controllers";
 import { textFieldTypes } from "../Elements/DataLists";
 import Date from "./TextFieldComponents/Date";
 import Prefix from "./TextFieldComponents/Prefix";
+import _ from "lodash";
 
 export default ({ index, form }) => {
 
@@ -69,8 +70,15 @@ export default ({ index, form }) => {
                     form={form}
                     label="Default Value (Optional)"
                     name={`ArrayField.${index}.details.details.default`}
-                    type="email"
+                    // type="email"
+                    pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i}
                 />
+                {_.get(form.formState.errors, `ArrayField.${index}.details.details.default`) &&
+                    _.get(form.formState.errors, `ArrayField.${index}.details.details.default`).type === "pattern" &&
+                    (<div style={{ color: "red", fontSize: "12px" }}>
+                        Please enter a valid email address !
+                    </div>)
+                }
             </Grid>
     }
 

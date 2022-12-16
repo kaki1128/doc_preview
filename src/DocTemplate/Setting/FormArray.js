@@ -1,8 +1,9 @@
 import { Grid } from "@mui/material";
+import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import SelectInputField, { SelectInputFieldwithErrorNotice } from "../rhf/SelectInputField";
 import TextInputField, { TextInputFieldwithErrorNotice } from "../rhf/TextInputField";
-import { CheckController, InputController, SelectionController, SwitchController } from "./Elements/Controllers";
+import { CheckController, CheckWithValueController, InputController, SelectionController, SwitchController } from "./Elements/Controllers";
 import { inputTypes } from "./Elements/DataLists";
 import TypeCheck from "./Sections/Check";
 import TypeRadio from "./Sections/Radio";
@@ -19,6 +20,10 @@ export const FormArray = ({ index, form, coordinates, ratio }) => {
     useEffect(() => {
         form.unregister(`ArrayField.${index}.details`);
     }, [selected])
+
+    useEffect(() => {
+        form.unregister(`ArrayField.${index}.details.details.default`);
+    }, [form.getValues(`ArrayField.${index}.details.details.format`)])
 
     let fillingTypes = null;
 
@@ -98,6 +103,15 @@ export const FormArray = ({ index, form, coordinates, ratio }) => {
                         {selected === "Text" && textSelected === "Input" ?
                             <>
                                 <Prefix index={index} form={form} /><br />
+                            </> : null}
+
+                        {selected === "Text" && textSelected === "Date" ?
+                            <>
+                                <CheckWithValueController
+                                    control={form.control}
+                                    name={`ArrayField.${index}.details.details.default`}
+                                    value={dayjs().format(`${form.getValues(`ArrayField.${index}.details.details.format`)}`)}
+                                /> Pre-set current?<br />
                             </> : null}
 
                         {selected === "Select" ?

@@ -9,7 +9,7 @@
     "@mantine/core": "^5.7.2",
     "@mantine/dates": "^5.7.2",
     "@mantine/hooks": "^5.7.2",
-    "@mui/icons-material": "^5.10.9",
+    "@mui/icons-material": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.69",
     "@mui/material": "^5.10.9",
     "@mui/styled-engine-sc": "^5.10.6",
