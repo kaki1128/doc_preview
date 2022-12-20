@@ -14,9 +14,9 @@ export default ({ index, form }) => {
 
     useEffect(() => {
         form.unregister(`ArrayField.${index}.details.details`);
-        // if (selected === "Input" || selected === "Number" || selected === "e-mail") {
-        //     form.setValue(`ArrayField.${index}.details.details.default`, "")
-        // }
+        if (selected === "Input" || selected === "Number" || selected === "e-mail") {
+            form.setValue(`ArrayField.${index}.details.details.default`, "")
+        }
         if (selected === "Date") {
             form.setValue(`ArrayField.${index}.details.details`, {
                 "timeType": "date",

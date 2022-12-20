@@ -132,6 +132,7 @@ export const CheckWithValueController = ({ control, name, value, defaultValue })
             )}
             name={name}
             control={control}
-            defaultValue={defaultValue} />
+            defaultValue={defaultValue}
+        />
     )
 }

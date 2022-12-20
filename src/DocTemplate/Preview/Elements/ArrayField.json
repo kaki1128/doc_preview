@@ -3,18 +3,21 @@
     "ArrayField": [
         {
             "bounding": {
-                "id": "ZnstRE5xn",
-                "x": 1629,
-                "y": 1918,
-                "height": 507,
-                "width": 1746
+                "id": "cmOsXkYhO",
+                "x": 1042,
+                "y": 1456,
+                "height": 295,
+                "width": 1533
             },
             "inputType": "Text",
-            "fieldName": "a",
+            "fieldName": "date",
+            "required": true,
             "details": {
-                "textFieldType": "Input",
+                "textFieldType": "Date",
                 "details": {
-                    "default": "default1"
+                    "timeType": "time",
+                    "format": "hh:mm A",
+                    "default": true
                 }
             }
         },

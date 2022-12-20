@@ -137,10 +137,6 @@ export const timeFieldTypes = [
         label: 'HH:mm:ss',
     },
     {
-        value: 'mm:ss',
-        label: 'mm:ss',
-    },
-    {
         value: 'hh:mm A',
         label: 'hh:mm AM/PM',
     },

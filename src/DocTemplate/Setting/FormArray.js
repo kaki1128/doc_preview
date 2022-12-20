@@ -106,11 +106,17 @@ export const FormArray = ({ index, form, coordinates, ratio }) => {
                             </> : null}
 
                         {selected === "Text" && textSelected === "Date" ?
+                            // <>
+                            //     <CheckWithValueController
+                            //         control={form.control}
+                            //         name={`ArrayField.${index}.details.details.default`}
+                            //         value={dayjs().format(`${form.getValues(`ArrayField.${index}.details.details.format`)}`)}
+                            //     /> Pre-set current?<br />
+                            // </> : null}
                             <>
-                                <CheckWithValueController
+                                <CheckController
                                     control={form.control}
                                     name={`ArrayField.${index}.details.details.default`}
-                                    value={dayjs().format(`${form.getValues(`ArrayField.${index}.details.details.format`)}`)}
                                 /> Pre-set current?<br />
                             </> : null}
 
@@ -124,9 +130,12 @@ export const FormArray = ({ index, form, coordinates, ratio }) => {
 
 
 
-                        {selected === "Text" && typeof textSelected === "undefined" || textSelected === "Textarea" ? (
-                            null
-                        ) : (
+                        {selected === "Text" &&
+                            textSelected === "Input" ||
+                            textSelected === "Number" ||
+                            textSelected === "Date" ||
+                            textSelected === "e-mail" ||
+                            selected === "Select" ? (
                             <>
                                 <CheckController
                                     control={form.control}
@@ -143,6 +152,8 @@ export const FormArray = ({ index, form, coordinates, ratio }) => {
                                     name={`ArrayField.${index}.underline`}
                                 /> Underline?<br />
                             </>
+                        ) : (
+                            null
                         )}
                     </Grid>
                 </>

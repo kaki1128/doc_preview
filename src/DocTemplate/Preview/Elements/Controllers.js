@@ -216,9 +216,11 @@ export const DatePickerController = (props) => {
 }
 
 export const TimeInputController = (props) => {
-    const { form, name, label, format, presetCurrent, required, showErrorMsg = "true" } = props;
+    const { form, name, label, format, presetCurrent, required,
+        withSeconds = false, ampmFormat = "24",
+        showErrorMsg = "true" } = props;
 
-    const [value, setValue] = useState(presetCurrent ? dayjs().format(format) : null);
+    const [value, setValue] = useState(presetCurrent ? new Date() : null);
     const handleOnTimeChange = (v, field) => {
         setValue(v);
         field.onChange(dayjs(v).format(format))
@@ -233,11 +235,12 @@ export const TimeInputController = (props) => {
             </div>
             <Controller render={({ field }) => (
                 <TimeInput
-                    // required={required}
                     value={value}
                     onChange={(value) => {
                         handleOnTimeChange(value, field)
                     }}
+                    withSeconds={withSeconds}
+                    format={ampmFormat}
                 />
             )}
                 name={name}

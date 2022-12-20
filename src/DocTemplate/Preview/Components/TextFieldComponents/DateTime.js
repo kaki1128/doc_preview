@@ -1,12 +1,12 @@
-import dayjs from "dayjs";
 import React from "react";
 import { DatePickerController, TimeInputController } from "../../Elements/Controllers";
+import dayjs from "dayjs";
 
 export default ({ field, label, name, required, form }) => {
 
     const type = field.details.details.timeType;
     const format = field.details.details.format;
-    const presetCurrent = field.details.details.presetCurrent;
+    const presetCurrent = field.details.details.default;
 
     let filling = null;
     if (type === "date") {
@@ -29,6 +29,8 @@ export default ({ field, label, name, required, form }) => {
                 required={required}
                 form={form}
                 presetCurrent={presetCurrent}
+                withSeconds={format.includes("ss") ? true : false}
+                ampmFormat={format.includes("A") ? "12" : "24"}
             />
     }
 

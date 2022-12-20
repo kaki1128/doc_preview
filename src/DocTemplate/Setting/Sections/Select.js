@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputController } from "../Elements/Controllers";
 import { useFieldArray } from "react-hook-form";
 import { Button, Grid, IconButton, Popover, Radio, Typography } from "@mui/material";
@@ -25,7 +25,11 @@ export default ({ index, form, control = form.control }) => {
         }
     };
 
-    //radio button diabled
+    //Radio button disabled
+    useEffect(() => {
+        form.setValue(`ArrayField.${index}.details.details.default`,
+            form.getValues(`ArrayField.${index}.details.selections.${selectedValue}`))
+    }, [form.getValues(`ArrayField.${index}.details.selections.${selectedValue}`)])
 
     //Set-Default hint popover
     const [anchorEl, setAnchorEl] = useState(null);

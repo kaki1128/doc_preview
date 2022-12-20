@@ -19,8 +19,13 @@ const Preview = () => {
 
     setting.ArrayField.forEach((element) => {
         if (element.details?.details?.default) {
-            defaultAtrributes.push(element.bounding.id)
-            defaultFieldValues.push(element.details.details.default)
+            if (element.details?.textFieldType === "Date") {
+                defaultAtrributes.push(element.bounding.id)
+                defaultFieldValues.push(dayjs().format(element.details.details.format))
+            } else {
+                defaultAtrributes.push(element.bounding.id)
+                defaultFieldValues.push(element.details.details.default)
+            }
         }
     });
 
@@ -30,9 +35,7 @@ const Preview = () => {
 
     const form = useForm({
         mode: 'onChange',
-        defaultValues:
-            _.fromPairs(output)
-        // { date: dayjs().format('D MMMM, YYYY') }
+        defaultValues: _.fromPairs(output)
     });
 
     const {
