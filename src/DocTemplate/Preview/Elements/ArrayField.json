@@ -16,7 +16,7 @@
                 "textFieldType": "Date",
                 "details": {
                     "timeType": "time",
-                    "format": "hh:mm A",
+                    "format": "hh:mm:ss A",
                     "default": true
                 }
             }

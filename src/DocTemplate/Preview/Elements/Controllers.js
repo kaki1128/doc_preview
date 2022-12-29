@@ -7,6 +7,7 @@ import dayjs from 'dayjs'
 import { Editor } from "@tinymce/tinymce-react";
 import clsx from "clsx";
 import _ from "lodash";
+import TimeField from 'react-simple-timefield';
 
 export const SelectionController = (props) => {
 
@@ -220,7 +221,7 @@ export const TimeInputController = (props) => {
         withSeconds = false, ampmFormat = "24",
         showErrorMsg = "true" } = props;
 
-    const [value, setValue] = useState(presetCurrent ? new Date() : null);
+    const [value, setValue] = useState(presetCurrent ? new Date() : "");
     const handleOnTimeChange = (v, field) => {
         setValue(v);
         field.onChange(dayjs(v).format(format))
@@ -242,11 +243,19 @@ export const TimeInputController = (props) => {
                     withSeconds={withSeconds}
                     format={ampmFormat}
                 />
+                // <TimeField
+                //     input={<TextField fullWidth size="small" />}
+                //     value={value}
+                //     onChange={field.onChange}
+                //     showSeconds={withSeconds}
+
+                // />
             )}
                 name={name}
                 control={form.control}
                 rules={{ required: required }}
             />
+            {console.log(value, "testvalue")}
             {showErrorMsg && Boolean(_.get(form.formState.errors, name), undefined) &&
                 <div style={{ color: "red", fontSize: "12px" }}>
                     *This field is Required

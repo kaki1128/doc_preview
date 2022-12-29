@@ -1,6 +1,5 @@
 import React from "react";
 import { DatePickerController, TimeInputController } from "../../Elements/Controllers";
-import dayjs from "dayjs";
 
 export default ({ field, label, name, required, form }) => {
 

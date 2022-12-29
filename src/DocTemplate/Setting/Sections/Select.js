@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { InputController } from "../Elements/Controllers";
 import { useFieldArray } from "react-hook-form";
 import { Button, Grid, IconButton, Popover, Radio, Typography } from "@mui/material";
-import TextInputField from "../../rhf/TextInputField";
+import TextInputField, { TextInputFieldwithErrorNotice } from "../../rhf/TextInputField";
 import { Delete } from "@mui/icons-material";
+import _ from 'lodash';
 
 export default ({ index, form, control = form.control }) => {
 
@@ -13,22 +14,26 @@ export default ({ index, form, control = form.control }) => {
     });
 
     const [selectedValue, setSelectedValue] = useState();
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-        form.setValue(`ArrayField.${index}.details.details.default`,
-            form.getValues(`ArrayField.${index}.details.selections.${parseInt(event.target.value)}`))
-    };
     const handleClick = (event) => {
         if (event.target.value === selectedValue) {
             setSelectedValue("");
             form.setValue(`ArrayField.${index}.details.details.default`, "")
+            // form.reset({ ArrayField: [{ details: [{ details: [{ default: "" }] }] }] })
+        } else {
+            setSelectedValue(event.target.value);
+            form.setValue(`ArrayField.${index}.details.details.default`,
+                form.getValues(`ArrayField.${index}.details.selections.${parseInt(event.target.value)}`))
         }
     };
 
     //Radio button disabled
     useEffect(() => {
-        form.setValue(`ArrayField.${index}.details.details.default`,
-            form.getValues(`ArrayField.${index}.details.selections.${selectedValue}`))
+        if (_.compact(selectedValue).length > 0) {
+            form.setValue(`ArrayField.${index}.details.details.default`,
+                form.getValues(`ArrayField.${index}.details.selections.${selectedValue}`))
+        } else {
+            form.setValue(`ArrayField.${index}.details.details.default`, "")
+        }
     }, [form.getValues(`ArrayField.${index}.details.selections.${selectedValue}`)])
 
     //Set-Default hint popover
@@ -53,7 +58,7 @@ export default ({ index, form, control = form.control }) => {
                         <Grid item xs={2}>
                             <Radio
                                 checked={selectedValue === `${nestedIndex}`}
-                                onChange={handleChange}
+                                // onChange={handleChange}
                                 onClick={handleClick}
                                 value={nestedIndex}
                                 name="radio-buttons"
@@ -85,16 +90,21 @@ export default ({ index, form, control = form.control }) => {
                         </Grid>
 
                         <Grid item xs={8}>
-                            <TextInputField
+                            {/* <TextInputField
                                 form={form}
                                 name={`ArrayField.${index}.details.selections.${nestedIndex}`}
                                 required={true}
                             />
-                            {form.formState.errors.ArrayField?.[index]?.fieldName &&
+                            {form.formState.errors.ArrayField?.[index]?.details?.selections?.[index] &&
                                 (<div style={{ color: "red", fontSize: "12px" }}>
                                     *This field is Required
                                 </div>)
-                            }
+                            } */}
+                            <TextInputFieldwithErrorNotice
+                                form={form}
+                                name={`ArrayField.${index}.details.selections.${nestedIndex}`}
+                                required={true}
+                            />
                         </Grid>
 
                         <Grid item xs={1}>
